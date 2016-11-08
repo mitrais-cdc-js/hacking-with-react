@@ -30,16 +30,8 @@ class Detail extends React.Component {
         this.fetchFeed('pulls');
     }
 
-    showCommits() {
-        this.setState({ mode: 'commits' });
-    }
-
-    showForks() {
-        this.setState({ mode: 'forks' });
-    }
-
-    showPulls() {
-        this.setState({ mode: 'pulls' });
+    selectMode(mode) {
+        this.setState({ mode });
     }
 
     renderCommits() {
@@ -47,8 +39,7 @@ class Detail extends React.Component {
             const author = commit.author ? commit.author.login : 'Anonymous';
 
             return (<p key={index}>
-                <strong>{author}</strong>:
-                <a href={commit.html_url}>{commit.commit.message}</a>.
+                <strong>{author}</strong>: <a href={commit.html_url}>{commit.commit.message}</a>.
             </p>);
         });
     }
@@ -68,8 +59,7 @@ class Detail extends React.Component {
             const user = pull.user ? pull.user.login : 'Anonymous';
 
             return (<p key={index}>
-                <strong>{user}</strong>:
-                <a href={pull.html_url}>{pull.body}</a>.
+                <strong>{user}</strong>: <a href={pull.html_url}>{pull.body}</a>.
             </p>);
         });
     }
@@ -86,9 +76,9 @@ class Detail extends React.Component {
         }
 
         return (<div>
-            <button onClick={this.showCommits.bind(this)}>Show Commits</button>
-            <button onClick={this.showForks.bind(this)}>Show Forks</button>
-            <button onClick={this.showPulls.bind(this)}>Show Pulls</button>
+            <button onClick={this.selectMode.bind(this, 'commits')}>Show Commits</button>
+            <button onClick={this.selectMode.bind(this, 'forks')}>Show Forks</button>
+            <button onClick={this.selectMode.bind(this, 'pulls')}>Show Pulls</button>
             {content}
         </div>); 
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, Redirect, hashHistory } from 'react-router';
+import { Router, Route, hashHistory } from 'react-router';
 
 import Detail from './pages/Detail';
 import List from './pages/List';
@@ -8,7 +8,7 @@ import List from './pages/List';
 ReactDOM.render(
     <Router history={hashHistory}>
         <Route path="/" component={List} />
-        <Route path="/react" component={Detail} />
+        <Route path="/detail/:repo" component={Detail} />
     </Router>,
     document.getElementById('app')
 );

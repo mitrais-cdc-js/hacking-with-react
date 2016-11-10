@@ -32,4 +32,20 @@ describe('Detail', () => {
         TestUtils.Simulate.click(forksButton);
         expect(rendered.state.mode).toEqual('forks');
     });
+
+    it('fetches forks from Github', () => {
+        const rendered = TestUtils.renderIntoDocument(
+            <Detail params={{repo: 'react'}} />
+        );
+
+        beforeEach(() => {
+            if (rendered.state.forks.length > 0) {
+                done();
+            }
+        }, "commits to be set", 2000);
+
+        afterEach(() => {
+            expect(rendered.state.forks.length).toEqual(30);
+        });
+    });
 });

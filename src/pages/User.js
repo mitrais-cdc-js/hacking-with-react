@@ -21,7 +21,7 @@ class User extends React.Component {
                 if (!error && response) {
                     this.setState({ events: response.body });
                 } else {
-                    console.log(`Error fetching user data.`, error);
+                    console.log('Error fetching user data.', error);
                 }
             });
     }

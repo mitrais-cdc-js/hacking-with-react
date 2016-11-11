@@ -1,19 +1,17 @@
-jest.autoMockOff();
+jest.mock('react-dom');
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TestUtils from 'react-addons-test-utils';
+import renderer from 'react-test-renderer';
 
-const List = require('../src/pages/List').default;
+import List from '../src/pages/List';
 
 describe('List', () => {
     it('renders three repo links', () => {
-        const rendered = TestUtils.renderIntoDocument(
+        const rendered = renderer.create(
             <List />
         );
 
-        const repos = TestUtils.scryRenderedDOMComponentsWithTag(rendered, 'li');
-
-        expect(repos.length).toEqual(3);
+        expect(rendered.toJSON()).toMatchSnapshot();
     });
 });

@@ -1,0 +1,38 @@
+exports[`List renders three repo links 1`] = `
+<div>
+  <p>
+    You are here: 
+    <a
+      onClick={[Function]}
+      style={Object {}}>
+      Home
+    </a>
+  </p>
+  <p>
+    Please choose a repository from the list below.
+  </p>
+  <ul>
+    <li>
+      <a
+        onClick={[Function]}
+        style={Object {}}>
+        React
+      </a>
+    </li>
+    <li>
+      <a
+        onClick={[Function]}
+        style={Object {}}>
+        React Native
+      </a>
+    </li>
+    <li>
+      <a
+        onClick={[Function]}
+        style={Object {}}>
+        Jest
+      </a>
+    </li>
+  </ul>
+</div>
+`;

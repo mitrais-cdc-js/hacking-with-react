@@ -28,7 +28,7 @@ describe('Detail', () => {
             <Detail params={{repo: ''}} />
         );
 
-        const forksButton = rendered.refs.forks;
+        const forksButton = rendered.forks;
         TestUtils.Simulate.click(forksButton);
         expect(rendered.state.mode).toEqual('forks');
     });

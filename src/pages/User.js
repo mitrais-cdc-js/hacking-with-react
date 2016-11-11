@@ -1,6 +1,6 @@
 import React from 'react';
 import ajax from 'superagent';
-import IndexLink from 'react-router';
+import { IndexLink } from 'react-router';
 
 class User extends React.Component {
   constructor(props) {
@@ -47,5 +47,9 @@ class User extends React.Component {
     );
   }
 }
+
+User.propTypes = {
+  params: React.PropTypes.shape(),
+};
 
 export default User;

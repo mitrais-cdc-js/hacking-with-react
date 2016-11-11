@@ -12,12 +12,19 @@ class Detail extends React.Component {
       forks: [],
       pulls: [],
     };
+
+    this.modes = ['commits', 'forks', 'pulls'];
+
+    this.selectModes = {};
+    this.modes.forEach((mode) => {
+      this.selectModes[mode] = this.selectMode.bind(this, mode);
+    });
   }
 
   componentWillMount() {
-    this.fetchFeed('commits');
-    this.fetchFeed('forks');
-    this.fetchFeed('pulls');
+    this.modes.forEach((mode) => {
+      this.fetchFeed(mode);
+    });
   }
 
   fetchFeed(type) {
@@ -91,13 +98,13 @@ class Detail extends React.Component {
       <div>
         <p>You are here: <IndexLink to="/" activeClassName="active">Home</IndexLink> &gt; {this.props.params.repo}</p>
 
-        <button onClick={this.selectMode.bind(this, 'commits')} ref="commits">
+        <button onClick={this.selectModes.commits} ref={() => this.commits}>
           Show Commits
         </button>
-        <button onClick={this.selectMode.bind(this, 'forks')} ref="forks">
+        <button onClick={this.selectModes.forks} ref={(ref) => { this.forks = ref; }}>
           Show Forks
         </button>
-        <button onClick={this.selectMode.bind(this, 'pulls')} ref="pulls">
+        <button onClick={this.selectModes.pulls} ref={() => this.pulls}>
           Show Pulls
         </button>
 
@@ -106,5 +113,9 @@ class Detail extends React.Component {
     );
   }
 }
+
+Detail.propTypes = {
+  params: React.PropTypes.shape(),
+};
 
 export default Detail;

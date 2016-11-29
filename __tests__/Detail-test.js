@@ -46,19 +46,22 @@ describe('Detail', () => {
         expect(forks.length).toEqual(30);
     });
 
-    it('fetches forks from Github', () => {
+    describe('Asynchronous Test', () => {
         const rendered = TestUtils.renderIntoDocument(
             <Detail params={{repo: 'react'}} />
         );
 
-        beforeEach(() => {
-            if (rendered.state.forks.length > 0) {
-                done();
-            }
-        }, "commits to be set", 2000);
+        beforeEach((done) => {
+            setTimeout(() => {
+                if (rendered.state.forks.length > 0) {
+                    done();
+                }
+            }, 3000);
+        });
 
-        afterEach(() => {
+        it('fetches forks from Github', (done) => {
             expect(rendered.state.forks.length).toEqual(30);
+            done();
         });
     });
 });
